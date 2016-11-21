@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Configuration;
 using ch.hsr.wpf.gadgeothek.domain;
 using ch.hsr.wpf.gadgeothek.service;
 
@@ -11,7 +12,7 @@ namespace ch.hsr.wpf.gadgeothek.runner
     {
         static void Main(string[] args)
         {
-            var url = "http://localhost:8080";
+            var url = ConfigurationManager.AppSettings["server"];
 
             // enable low-level HTTP-call logging by uncommenting the following line:
             //RestServiceBase.IsLogging = true;

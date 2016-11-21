@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Configuration;
 using System.Threading.Tasks;
 using ch.hsr.wpf.gadgeothek.domain;
 using ch.hsr.wpf.gadgeothek.service;
@@ -24,7 +25,7 @@ namespace ch.hsr.wpf.gadgeothek.runner
             Console.WriteLine("<Press CTRL + C to terminate the app>");
 
 
-            var url = "http://localhost:8080";
+            var url = ConfigurationManager.AppSettings["server"];
 
             // web socket connection to listen to changes:
             var client = new websocket.WebSocketClient(url);
