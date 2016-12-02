@@ -133,10 +133,11 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left" 
                     Width="120"
-                    SelectedItem="{Binding 
+                    SelectedValue="{Binding 
                         ElementName=GadgetList, 
                         Path=SelectedItem.Condition, 
-                        UpdateSourceTrigger=PropertyChanged}"
+                        UpdateSourceTrigger=PropertyChanged,
+                        Converter={StaticResource MyConditionValueConverter}}"
                     ItemsSource="{Binding Source={StaticResource Conditions}}" />
 
                 <StackPanel
