@@ -39,7 +39,7 @@ namespace ch.hsr.wpf.gadgeothek.ui
         private void LoadData()
         {
             libraryService = new LibraryService(ConfigurationManager.AppSettings["server"]);
-            if (!libraryService.Login("matt.muster@hsr.ch", "12345"))
+            if (!libraryService.Login(ConfigurationManager.AppSettings["admin-user"], ConfigurationManager.AppSettings["admin-password"]))
             {
                 Console.WriteLine("Sorry, not authorized");
                 return;
