@@ -60,9 +60,12 @@ namespace ch.hsr.wpf.gadgeothek.ui.tab
 
         private void DeleteGadget_Click(object sender, RoutedEventArgs e)
         {
-            Gadget gadgetToRemove = GadgetList.SelectedItem as Gadget;
-            libraryAdminService.DeleteGadget(gadgetToRemove);
-            Gadgets.Remove(gadgetToRemove);
+            if (MessageBox.Show("Soll das Gadget gelöscht werden?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                Gadget gadgetToRemove = GadgetList.SelectedItem as Gadget;
+                libraryAdminService.DeleteGadget(gadgetToRemove);
+                Gadgets.Remove(gadgetToRemove);
+            }
         }
     }
 }
