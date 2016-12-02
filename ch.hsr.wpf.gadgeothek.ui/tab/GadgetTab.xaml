@@ -34,6 +34,8 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"></ColumnDefinition>
                     <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
@@ -60,7 +62,11 @@
                     Text="{Binding 
                         ElementName=GadgetList, 
                         Path=SelectedItem.InventoryNumber, 
-                        UpdateSourceTrigger=PropertyChanged}" />
+                        UpdateSourceTrigger=PropertyChanged}" 
+                    Visibility="{Binding 
+                            ElementName=GadgetList, 
+                            Path=SelectedIndex, 
+                            Converter={StaticResource MyEditButtonVisibilityConverter}}"/>
                 
                 <TextBlock 
                     Grid.Row="1"
@@ -87,7 +93,7 @@
                     Margin="10,0,0,0" />
 
                 <TextBox
-                    Name="Hersteller"
+                    Name="Manufacturer"
                     Grid.Row="2"
                     Grid.Column="1" 
                     VerticalAlignment="Center"
@@ -104,7 +110,7 @@
                     Margin="10,0,0,0" />
 
                 <TextBox
-                    Name="Preis"
+                    Name="Price"
                     Grid.Row="3"
                     Grid.Column="1" 
                     VerticalAlignment="Center"
@@ -121,7 +127,7 @@
                     Margin="10,0,0,0" />
 
                 <ComboBox
-                    Name="Zustand"
+                    Name="ConditionCB"
                     Grid.Row="4"
                     Grid.Column="1"
                     VerticalAlignment="Center"
@@ -133,20 +139,51 @@
                         UpdateSourceTrigger=PropertyChanged}"
                     ItemsSource="{Binding Source={StaticResource Conditions}}" />
 
-                <Button
-                    Name="UpdateGadget" 
-                    Content="update"
+                <StackPanel
                     Grid.Row="5"
-                    Grid.Column="1" 
-                    Click="UpdateGadget_Click" />
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Orientation="Horizontal">
+                    <Button
+                        Name="UpdateGadget" 
+                        Content="update"
+                        Width="120"
+                        Visibility="{Binding 
+                            ElementName=GadgetList, 
+                            Path=SelectedIndex, 
+                            Converter={StaticResource MyEditButtonVisibilityConverter}}"
+                        Click="UpdateGadget_Click" />
 
-                <Button
-                    Name="DeleteGadget"
-                    Content="delete"
-                    Grid.Row="6"
-                    Grid.Column="1" 
-                    Click="DeleteGadget_Click" />
+                    <Button
+                        Name="DeleteGadget"
+                        Content="delete"
+                        Width="120"
+                        Visibility="{Binding 
+                            ElementName=GadgetList, 
+                            Path=SelectedIndex, 
+                            Converter={StaticResource MyEditButtonVisibilityConverter}}"
+                        Click="DeleteGadget_Click" />
 
+                    <Button
+                        Name="CreateGadget"
+                        Content="create"
+                        Width="120"
+                        Visibility="{Binding 
+                            ElementName=GadgetList, 
+                            Path=SelectedIndex, 
+                            Converter={StaticResource MyEditButtonVisibilityConverter}}"
+                        Click="CreateGadget_Click" />
+                    
+                    <Button
+                        Name="SaveGadget"
+                        Content="save"
+                        Width="120"
+                        Visibility="{Binding 
+                            ElementName=GadgetList, 
+                            Path=SelectedIndex, 
+                            Converter={StaticResource MySaveButtonVisibilityConverter}}"
+                        Click="SaveGadget_Click" />
+                </StackPanel>
             </Grid>
         </StackPanel>
     </StackPanel>

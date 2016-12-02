@@ -5,6 +5,8 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <local:EditButtonVisibilityConverter x:Key="MyEditButtonVisibilityConverter" />
+            <local:SaveButtonVisibilityConverter x:Key="MySaveButtonVisibilityConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="style/Dimension.xaml" />
             </ResourceDictionary.MergedDictionaries>

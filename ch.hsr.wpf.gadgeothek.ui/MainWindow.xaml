@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ch.hsr.wpf.gadgeothek.ui"
         xmlns:tabs="clr-namespace:ch.hsr.wpf.gadgeothek.ui.tab"
         mc:Ignorable="d"
-        Title=" Gadgeothek-Admin-App" Height="350" Width="525">
+        Title=" Gadgeothek-Admin-App" Height="350" Width="625">
     <DockPanel>
         <TabControl>
             <TabItem Header="Gadgets">

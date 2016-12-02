@@ -67,5 +67,22 @@ namespace ch.hsr.wpf.gadgeothek.ui.tab
                 Gadgets.Remove(gadgetToRemove);
             }
         }
+
+        private void CreateGadget_Click(object sender, RoutedEventArgs e)
+        {
+            GadgetList.SelectedIndex = -1;
+        }
+
+        private void SaveGadget_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO validate fields
+            Gadget newGadget = new Gadget(Name.Text);
+            newGadget.Manufacturer = Manufacturer.Text;
+            newGadget.Price = Convert.ToDouble(Price.Text);
+            newGadget.Condition = (domain.Condition)Enum.Parse(typeof(domain.Condition), ConditionCB.SelectedItem as string);
+            libraryAdminService.AddGadget(newGadget);
+            Gadgets.Add(newGadget);
+            GadgetList.SelectedIndex = Gadgets.Count() - 1;
+        }
     }
 }
