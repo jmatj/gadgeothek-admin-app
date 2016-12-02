@@ -24,36 +24,11 @@ namespace ch.hsr.wpf.gadgeothek.ui
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<Gadget> Gadgets { get; set; }
-        private LibraryService libraryService;
 
         public MainWindow()
         {
             InitializeComponent();
-
-            LoadData();
-
-            DataContext = this;
         }
-
-        private void LoadData()
-        {
-            libraryService = new LibraryService(ConfigurationManager.AppSettings["server"]);
-            if (!libraryService.Login(ConfigurationManager.AppSettings["admin-user"], ConfigurationManager.AppSettings["admin-password"]))
-            {
-                Console.WriteLine("Sorry, not authorized");
-                return;
-            }
-            LoadGadgets();
-        }
-
-        private void LoadGadgets()
-        {
-            Gadgets = new ObservableCollection<Gadget>();
-            foreach (Gadget gadget in libraryService.GetGadgets())
-            {
-                Gadgets.Add(gadget);
-            }
-        }
+        
     }
 }

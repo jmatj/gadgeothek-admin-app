@@ -7,6 +7,14 @@
              mc:Ignorable="d" 
              Style="{StaticResource tabWindow}">
     <Grid>
-        <TextBlock Text="Loans" />
+        <ListBox ItemsSource="{Binding Loans}">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="local:Loan">
+                    <DockPanel HorizontalAlignment="Stretch">
+                        <TextBlock Text="{Binding Gadget.Name}" />
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>

@@ -3,18 +3,144 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:domain="clr-namespace:ch.hsr.wpf.gadgeothek.domain;assembly=ch.hsr.wpf.gadgeothek"
              xmlns:local="clr-namespace:ch.hsr.wpf.gadgeothek.ui.tab"
              mc:Ignorable="d" 
              Style="{StaticResource tabWindow}">
-    <Grid>
-        <ListBox ItemsSource="{Binding Gadgets}">
+    
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="Conditions"
+            MethodName="GetNames"
+            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="domain:Condition" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+    
+    <StackPanel Orientation="Horizontal">
+        <ListBox Name="GadgetList" ItemsSource="{Binding Gadgets}">
             <ListBox.ItemTemplate>
-                <DataTemplate DataType="local:Gadgets">
+                <DataTemplate DataType="local:Gadget">
                     <DockPanel HorizontalAlignment="Stretch">
                         <TextBlock Text="{Binding Name}" />
                     </DockPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-    </Grid>
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock 
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Text="Inventar-Nummer" 
+                    Margin="10,0,0,0" />
+
+                <TextBox
+                    Name="InventarNummer"
+                    Grid.Row="1"
+                    Grid.Column="1" 
+                    VerticalAlignment="Center"
+                    Text="{Binding 
+                        ElementName=GadgetList, 
+                        Path=SelectedItem.InventoryNumber, 
+                        UpdateSourceTrigger=PropertyChanged}" />
+                
+                <TextBlock 
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Text="Name" 
+                    Margin="10,0,0,0" />
+
+                <TextBox
+                    Name="Name"
+                    Grid.Row="1"
+                    Grid.Column="1" 
+                    VerticalAlignment="Center"
+                    Text="{Binding 
+                        ElementName=GadgetList, 
+                        Path=SelectedItem.Name, 
+                        UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock 
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Text="Hersteller" 
+                    Margin="10,0,0,0" />
+
+                <TextBox
+                    Name="Hersteller"
+                    Grid.Row="2"
+                    Grid.Column="1" 
+                    VerticalAlignment="Center"
+                    Text="{Binding 
+                        ElementName=GadgetList, 
+                        Path=SelectedItem.Manufacturer, 
+                        UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock 
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Text="Preis" 
+                    Margin="10,0,0,0" />
+
+                <TextBox
+                    Name="Preis"
+                    Grid.Row="3"
+                    Grid.Column="1" 
+                    VerticalAlignment="Center"
+                    Text="{Binding 
+                        ElementName=GadgetList, 
+                        Path=SelectedItem.Price, 
+                        UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock 
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Text="Zustand" 
+                    Margin="10,0,0,0" />
+
+                <ComboBox
+                    Name="Zustand"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left" 
+                    Width="120"
+                    SelectedItem="{Binding 
+                        ElementName=GadgetList, 
+                        Path=SelectedItem.Condition, 
+                        UpdateSourceTrigger=PropertyChanged}"
+                    ItemsSource="{Binding Source={StaticResource Conditions}}" />
+
+                <Button
+                    Name="UpdateGadget" 
+                    Content="update"
+                    Grid.Row="5"
+                    Grid.Column="1" Click="UpdateGadget_Click"
+                    />
+
+            </Grid>
+        </StackPanel>
+    </StackPanel>
 </UserControl>

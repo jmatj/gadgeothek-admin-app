@@ -1,5 +1,9 @@
-﻿using System;
+﻿using ch.hsr.wpf.gadgeothek.domain;
+using ch.hsr.wpf.gadgeothek.service;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +24,38 @@ namespace ch.hsr.wpf.gadgeothek.ui.tab
     /// </summary>
     public partial class GadgetTab : UserControl
     {
+        private LibraryAdminService libraryAdminService;
+        public ObservableCollection<Gadget> Gadgets { get; set; }
+
         public GadgetTab()
         {
             InitializeComponent();
+
+            LoadData();
+            GadgetList.SelectedIndex = 0;
+
+            DataContext = this;
+        }
+
+        private void LoadData()
+        {
+            libraryAdminService = new LibraryAdminService(ConfigurationManager.AppSettings["server"]);
+
+            LoadGadgets();
+        }
+
+        private void LoadGadgets()
+        {
+            Gadgets = new ObservableCollection<Gadget>();
+            foreach (Gadget gadget in libraryAdminService.GetAllGadgets())
+            {
+                Gadgets.Add(gadget);
+            }
+        }
+
+        private void UpdateGadget_Click(object sender, RoutedEventArgs e)
+        {
+            libraryAdminService.UpdateGadget(GadgetList.SelectedItem as Gadget);
         }
     }
 }
