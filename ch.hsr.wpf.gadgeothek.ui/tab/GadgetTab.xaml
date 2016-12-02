@@ -137,8 +137,15 @@
                     Name="UpdateGadget" 
                     Content="update"
                     Grid.Row="5"
-                    Grid.Column="1" Click="UpdateGadget_Click"
-                    />
+                    Grid.Column="1" 
+                    Click="UpdateGadget_Click" />
+
+                <Button
+                    Name="DeleteGadget"
+                    Content="delete"
+                    Grid.Row="6"
+                    Grid.Column="1" 
+                    Click="DeleteGadget_Click" />
 
             </Grid>
         </StackPanel>

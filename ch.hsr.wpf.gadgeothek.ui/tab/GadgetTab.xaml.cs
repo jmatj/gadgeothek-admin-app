@@ -57,5 +57,12 @@ namespace ch.hsr.wpf.gadgeothek.ui.tab
         {
             libraryAdminService.UpdateGadget(GadgetList.SelectedItem as Gadget);
         }
+
+        private void DeleteGadget_Click(object sender, RoutedEventArgs e)
+        {
+            Gadget gadgetToRemove = GadgetList.SelectedItem as Gadget;
+            libraryAdminService.DeleteGadget(gadgetToRemove);
+            Gadgets.Remove(gadgetToRemove);
+        }
     }
 }
