@@ -52,12 +52,13 @@
                     Grid.Column="0"
                     VerticalAlignment="Center"
                     Text="Inventar-Nummer" 
-                    Margin="10,0,0,0" />
+                    Margin="10,5,0,5" />
 
                 <TextBox
                     Name="InventarNummer"
                     Grid.Row="0"
                     Grid.Column="1" 
+                    Margin="0,5,0,5"
                     VerticalAlignment="Center"
                     Text="{Binding 
                         ElementName=GadgetList, 
@@ -79,7 +80,8 @@
                     Name="Name"
                     Grid.Row="1"
                     Grid.Column="1" 
-                    VerticalAlignment="Center"
+                    Grid.ColumnSpan="2"
+                    Margin="0,5,0,5"
                     Text="{Binding 
                         ElementName=GadgetList, 
                         Path=SelectedItem.Name, 
@@ -96,7 +98,8 @@
                     Name="Manufacturer"
                     Grid.Row="2"
                     Grid.Column="1" 
-                    VerticalAlignment="Center"
+                    Grid.ColumnSpan="2"
+                    Margin="0,5,0,5"
                     Text="{Binding 
                         ElementName=GadgetList, 
                         Path=SelectedItem.Manufacturer, 
@@ -113,7 +116,8 @@
                     Name="Price"
                     Grid.Row="3"
                     Grid.Column="1" 
-                    VerticalAlignment="Center"
+                    Grid.ColumnSpan="2"
+                    Margin="0,5,0,5"
                     Text="{Binding 
                         ElementName=GadgetList, 
                         Path=SelectedItem.Price, 
@@ -130,8 +134,7 @@
                     Name="ConditionCB"
                     Grid.Row="4"
                     Grid.Column="1"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Left" 
+                    Margin="0,5,0,5"
                     Width="120"
                     SelectedValue="{Binding 
                         ElementName=GadgetList, 
@@ -140,14 +143,12 @@
                         Converter={StaticResource MyConditionValueConverter}}"
                     ItemsSource="{Binding Source={StaticResource Conditions}}" />
 
-                <StackPanel
-                    Grid.Row="5"
-                    Grid.Column="1"
-                    Grid.ColumnSpan="3"
-                    Orientation="Horizontal">
+               
                     <Button
                         Name="UpdateGadget" 
-                        Content="update"
+                        Content="Update"
+                        Grid.Row="5"
+                        Grid.Column="1"
                         Width="120"
                         Visibility="{Binding 
                             ElementName=GadgetList, 
@@ -157,8 +158,11 @@
 
                     <Button
                         Name="DeleteGadget"
-                        Content="delete"
-                        Width="120"
+                        Content="Delete"
+                        Grid.Row="5"
+                        Grid.Column="2"
+                        Margin="10,0,0,0"
+                        Width="110"
                         Visibility="{Binding 
                             ElementName=GadgetList, 
                             Path=SelectedIndex, 
@@ -167,7 +171,10 @@
 
                     <Button
                         Name="CreateGadget"
-                        Content="create"
+                        Content="Add new Gadget"
+                        Grid.Row="6"
+                        Grid.Column="1"
+                        Margin="0,10,0,0"
                         Width="120"
                         Visibility="{Binding 
                             ElementName=GadgetList, 
@@ -177,14 +184,16 @@
                     
                     <Button
                         Name="SaveGadget"
-                        Content="save"
+                        Content="Save"
+                        Grid.Row="5"
+                        Grid.Column="1"
                         Width="120"
                         Visibility="{Binding 
                             ElementName=GadgetList, 
                             Path=SelectedIndex, 
                             Converter={StaticResource MySaveButtonVisibilityConverter}}"
                         Click="SaveGadget_Click" />
-                </StackPanel>
+                
             </Grid>
         </StackPanel>
     </StackPanel>
