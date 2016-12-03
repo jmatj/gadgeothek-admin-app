@@ -3,22 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:domain="clr-namespace:ch.hsr.wpf.gadgeothek.domain;assembly=ch.hsr.wpf.gadgeothek"
              xmlns:local="clr-namespace:ch.hsr.wpf.gadgeothek.ui.tab"
              mc:Ignorable="d" 
              Style="{StaticResource tabWindow}">
-    
-    <UserControl.Resources>
-        <ObjectDataProvider x:Key="Conditions"
-            MethodName="GetNames"
-            ObjectType="{x:Type sys:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="domain:Condition" />
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-    </UserControl.Resources>
-    
     <StackPanel Orientation="Horizontal">
         <ListBox Name="GadgetList" ItemsSource="{Binding Gadgets}">
             <ListBox.ItemTemplate>
