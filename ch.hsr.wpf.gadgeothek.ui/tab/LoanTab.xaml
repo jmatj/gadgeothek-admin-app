@@ -7,10 +7,13 @@
              mc:Ignorable="d" 
              Style="{StaticResource tabWindow}">
     <StackPanel Orientation="Horizontal">
-        <DataGrid Name="LoanList" ItemsSource="{Binding Reservations}" AutoGenerateColumns="False">
+        <DataGrid Name="LoanList" ItemsSource="{Binding Loans}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" SortDirection="Ascending" Visibility="Hidden"/>
-                <DataGridTextColumn Header="Kunden" Binding="{Binding Customer.Name}" />
+                <DataGridTextColumn Header="Kunde" MinWidth="100" Binding="{Binding Customer.Name}" />
+                <DataGridTextColumn Header="Gadget" MinWidth="100" Binding="{Binding Gadget.Name}" />
+                <DataGridTextColumn Header="Ausleihdatum" Binding="{Binding PickupDate, StringFormat={}{0:MM.dd.yyyy}}" SortDirection="Descending" />
+                <DataGridCheckBoxColumn Header="Ist fällig" Binding="{Binding IsOverdue, Mode=OneWay}" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn Header="Retourniert" Binding="{Binding WasReturned, Mode=OneWay}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel>
@@ -18,12 +21,8 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"></ColumnDefinition>
                     <ColumnDefinition Width="120"></ColumnDefinition>
-                    <ColumnDefinition Width="120"></ColumnDefinition>
-                    <ColumnDefinition Width="120"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
@@ -35,18 +34,88 @@
                     Grid.Row="0"
                     Grid.Column="0"
                     VerticalAlignment="Center"
-                    Text="Gadget-Name" 
+                    Text="Kunde" 
                     Margin="10,5,0,5" />
 
                 <TextBlock
-                    Name="GadgetName"
                     Grid.Row="0"
                     Grid.Column="1" 
                     Margin="0,5,0,5"
                     VerticalAlignment="Center"
                     Text="{Binding 
                         ElementName=LoanList, 
+                        Path=SelectedItem.Customer.Name, 
+                        UpdateSourceTrigger=PropertyChanged}" />
+                
+                <TextBlock 
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Text="Gadget-Name" 
+                    Margin="10,5,0,5" />
+
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="1" 
+                    Margin="0,5,0,5"
+                    VerticalAlignment="Center"
+                    Text="{Binding 
+                        ElementName=LoanList, 
                         Path=SelectedItem.Gadget.Name, 
+                        UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock 
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Text="Ausleihdatum" 
+                    Margin="10,5,0,5" />
+
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="1" 
+                    Margin="0,5,0,5"
+                    VerticalAlignment="Center"
+                    Text="{Binding 
+                        ElementName=LoanList, 
+                        Path=SelectedItem.PickupDate,
+                        StringFormat={}{0:MM.dd.yyyy},
+                        UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock 
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Text="Rückgabedatum" 
+                    Margin="10,5,0,5" />
+
+                <TextBlock
+                    Grid.Row="3"
+                    Grid.Column="1" 
+                    Margin="0,5,0,5"
+                    VerticalAlignment="Center"
+                    Text="{Binding 
+                        ElementName=LoanList, 
+                        Path=SelectedItem.ReturnDate,
+                        StringFormat={}{0:MM.dd.yyyy},
+                        UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock 
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Text="Fällig am" 
+                    Margin="10,5,0,5" />
+
+                <TextBlock
+                    Grid.Row="4"
+                    Grid.Column="1" 
+                    Margin="0,5,0,5"
+                    VerticalAlignment="Center"
+                    Text="{Binding 
+                        ElementName=LoanList, 
+                        Path=SelectedItem.OverDueDate,
+                        StringFormat={}{0:MM.dd.yyyy},
                         UpdateSourceTrigger=PropertyChanged}" />
             </Grid>
         </StackPanel>
