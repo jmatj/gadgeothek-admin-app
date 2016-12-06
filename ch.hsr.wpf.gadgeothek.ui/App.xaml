@@ -12,8 +12,8 @@
             <local:ConditionValueConverter x:Key="MyConditionValueConverter" />
             
             <ObjectDataProvider x:Key="Conditions"
-            MethodName="GetNames"
-            ObjectType="{x:Type sys:Enum}">
+                MethodName="GetNames"
+                ObjectType="{x:Type sys:Enum}">
                 <ObjectDataProvider.MethodParameters>
                     <x:Type TypeName="domain:Condition" />
                 </ObjectDataProvider.MethodParameters>

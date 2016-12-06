@@ -6,15 +6,49 @@
              xmlns:local="clr-namespace:ch.hsr.wpf.gadgeothek.ui.tab"
              mc:Ignorable="d" 
              Style="{StaticResource tabWindow}">
-    <Grid>
-        <ListBox ItemsSource="{Binding Loans}">
-            <ListBox.ItemTemplate>
-                <DataTemplate DataType="local:Loan">
-                    <DockPanel HorizontalAlignment="Stretch">
-                        <TextBlock Text="{Binding Gadget.Name}" />
-                    </DockPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-    </Grid>
+    <StackPanel Orientation="Horizontal">
+        <DataGrid Name="LoanList" ItemsSource="{Binding Reservations}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" SortDirection="Ascending" Visibility="Hidden"/>
+                <DataGridTextColumn Header="Kunden" Binding="{Binding Customer.Name}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock 
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Text="Gadget-Name" 
+                    Margin="10,5,0,5" />
+
+                <TextBlock
+                    Name="GadgetName"
+                    Grid.Row="0"
+                    Grid.Column="1" 
+                    Margin="0,5,0,5"
+                    VerticalAlignment="Center"
+                    Text="{Binding 
+                        ElementName=LoanList, 
+                        Path=SelectedItem.Gadget.Name, 
+                        UpdateSourceTrigger=PropertyChanged}" />
+            </Grid>
+        </StackPanel>
+    </StackPanel>
 </UserControl>
