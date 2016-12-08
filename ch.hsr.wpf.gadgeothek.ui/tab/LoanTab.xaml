@@ -9,9 +9,9 @@
     <StackPanel Orientation="Horizontal">
         <DataGrid Name="LoanList" ItemsSource="{Binding Loans}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Kunde" MinWidth="100" Binding="{Binding Customer.Name}" />
-                <DataGridTextColumn Header="Gadget" MinWidth="100" Binding="{Binding Gadget.Name}" />
-                <DataGridTextColumn Header="Ausleihdatum" Binding="{Binding PickupDate, StringFormat={}{0:MM.dd.yyyy}}" SortDirection="Descending" />
+                <DataGridTextColumn Header="Kunde" MinWidth="100" Binding="{Binding Customer.Name}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Gadget" MinWidth="100" Binding="{Binding Gadget.Name}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Ausleihdatum" Binding="{Binding PickupDate, StringFormat={}{0:MM.dd.yyyy}}" SortDirection="Descending" IsReadOnly="True" />
                 <DataGridCheckBoxColumn Header="Ist fällig" Binding="{Binding IsOverdue, Mode=OneWay}" IsReadOnly="True"/>
                 <DataGridCheckBoxColumn Header="Retourniert" Binding="{Binding WasReturned, Mode=OneWay}" IsReadOnly="True"/>
             </DataGrid.Columns>
