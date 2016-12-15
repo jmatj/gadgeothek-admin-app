@@ -3,12 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ch.hsr.wpf.gadgeothek.ui"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:domain="clr-namespace:ch.hsr.wpf.gadgeothek.domain;assembly=ch.hsr.wpf.gadgeothek"
-             StartupUri="MainWindow.xaml">
+             xmlns:domain="clr-namespace:ch.hsr.wpf.gadgeothek.domain;assembly=ch.hsr.wpf.gadgeothek">
     <Application.Resources>
         <ResourceDictionary>
             <local:EditButtonVisibilityConverter x:Key="MyEditButtonVisibilityConverter" />
-            <local:SaveButtonVisibilityConverter x:Key="MySaveButtonVisibilityConverter" />
+            <BooleanToVisibilityConverter x:Key="MySaveButtonVisibilityConverter" />
             <local:ConditionValueConverter x:Key="MyConditionValueConverter" />
             
             <ObjectDataProvider x:Key="Conditions"

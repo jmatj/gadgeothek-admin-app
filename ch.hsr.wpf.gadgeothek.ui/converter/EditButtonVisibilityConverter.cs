@@ -13,7 +13,7 @@ namespace ch.hsr.wpf.gadgeothek.ui
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is int && (int)value == -1 ? Visibility.Collapsed : Visibility.Visible;
+            return value is bool && (bool)value ? Visibility.Collapsed : Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

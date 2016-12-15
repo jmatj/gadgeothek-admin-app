@@ -7,7 +7,9 @@
              mc:Ignorable="d" 
              Style="{StaticResource tabWindow}">
     <StackPanel Orientation="Horizontal">
-        <ListBox Name="GadgetList" ItemsSource="{Binding Gadgets}">
+        <ListBox Name="GadgetList" 
+                 ItemsSource="{Binding Gadgets}"
+                 SelectedItem="{Binding SelectedGadget}" >
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="local:Gadget">
                     <DockPanel HorizontalAlignment="Stretch">
@@ -40,7 +42,7 @@
                     Text="Inventar-Nummer" 
                     Margin="10,5,0,5" />
 
-                <TextBox
+                <TextBlock
                     Name="InventarNummer"
                     Grid.Row="0"
                     Grid.Column="1" 
@@ -51,8 +53,7 @@
                         Path=SelectedItem.InventoryNumber, 
                         UpdateSourceTrigger=PropertyChanged}" 
                     Visibility="{Binding 
-                            ElementName=GadgetList, 
-                            Path=SelectedIndex, 
+                            Path=GadgetNotSaved, 
                             Converter={StaticResource MyEditButtonVisibilityConverter}}"/>
                 
                 <TextBlock 
@@ -135,10 +136,9 @@
                         Grid.Row="5"
                         Grid.Column="1"
                         Visibility="{Binding 
-                            ElementName=GadgetList, 
-                            Path=SelectedIndex, 
+                            Path=GadgetNotSaved, 
                             Converter={StaticResource MyEditButtonVisibilityConverter}}"
-                        Click="UpdateGadget_Click" />
+                        Command="{Binding UpdateCommand}" />
 
                     <Button
                         Name="DeleteGadget"
@@ -148,10 +148,9 @@
                         Margin="10,0,0,0"
                         Width="110"
                         Visibility="{Binding 
-                            ElementName=GadgetList, 
-                            Path=SelectedIndex, 
+                            Path=GadgetNotSaved, 
                             Converter={StaticResource MyEditButtonVisibilityConverter}}"
-                        Click="DeleteGadget_Click" />
+                        Command="{Binding DeleteCommand}" />
 
                     <Button
                         Name="CreateGadget"
@@ -160,10 +159,9 @@
                         Grid.Column="1"
                         Margin="0,10,0,0"
                         Visibility="{Binding 
-                            ElementName=GadgetList, 
-                            Path=SelectedIndex, 
+                            Path=GadgetNotSaved, 
                             Converter={StaticResource MyEditButtonVisibilityConverter}}"
-                        Click="CreateGadget_Click" />
+                        Command="{Binding CreateNewGadgetCommand}" />
                     
                     <Button
                         Name="SaveGadget"
@@ -171,10 +169,10 @@
                         Grid.Row="5"
                         Grid.Column="1"
                         Visibility="{Binding 
-                            ElementName=GadgetList, 
-                            Path=SelectedIndex, 
+                            Path=GadgetNotSaved, 
                             Converter={StaticResource MySaveButtonVisibilityConverter}}"
-                        Click="SaveGadget_Click" />
+                        CommandParameter="{Binding ElementName=GadgetList, Path=SelectedItem}" 
+                        Command="{Binding SaveCommand}" />
                 
             </Grid>
         </StackPanel>

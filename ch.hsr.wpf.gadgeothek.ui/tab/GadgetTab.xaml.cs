@@ -1,5 +1,6 @@
 ﻿using ch.hsr.wpf.gadgeothek.domain;
 using ch.hsr.wpf.gadgeothek.service;
+using ch.hsr.wpf.gadgeothek.ui.viewmodel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,65 +25,12 @@ namespace ch.hsr.wpf.gadgeothek.ui.tab
     /// </summary>
     public partial class GadgetTab : UserControl
     {
-        private LibraryAdminService libraryAdminService;
-        public ObservableCollection<Gadget> Gadgets { get; set; }
-
         public GadgetTab()
         {
             InitializeComponent();
 
-            LoadData();
+            DataContext = new GadgetVM();
             GadgetList.SelectedIndex = 0;
-
-            DataContext = this;
-        }
-
-        private void LoadData()
-        {
-            libraryAdminService = new LibraryAdminService(ConfigurationManager.AppSettings["server"]);
-
-            LoadGadgets();
-        }
-
-        private void LoadGadgets()
-        {
-            Gadgets = new ObservableCollection<Gadget>();
-            foreach (Gadget gadget in libraryAdminService.GetAllGadgets())
-            {
-                Gadgets.Add(gadget);
-            }
-        }
-
-        private void UpdateGadget_Click(object sender, RoutedEventArgs e)
-        {
-            libraryAdminService.UpdateGadget(GadgetList.SelectedItem as Gadget);
-        }
-
-        private void DeleteGadget_Click(object sender, RoutedEventArgs e)
-        {
-            if (MessageBox.Show("Soll das Gadget gelöscht werden?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-            {
-                Gadget gadgetToRemove = GadgetList.SelectedItem as Gadget;
-                libraryAdminService.DeleteGadget(gadgetToRemove);
-                Gadgets.Remove(gadgetToRemove);
-            }
-        }
-
-        private void CreateGadget_Click(object sender, RoutedEventArgs e)
-        {
-            GadgetList.SelectedIndex = -1;
-        }
-
-        private void SaveGadget_Click(object sender, RoutedEventArgs e)
-        {
-            //TODO validate fields
-            Gadget newGadget = new Gadget(Name.Text);
-            newGadget.Manufacturer = Manufacturer.Text;
-            newGadget.Price = Convert.ToDouble(Price.Text);
-            newGadget.Condition = (domain.Condition)Enum.Parse(typeof(domain.Condition), ConditionCB.SelectedItem as string);
-            libraryAdminService.AddGadget(newGadget);
-            Gadgets.Add(newGadget);
-            GadgetList.SelectedIndex = Gadgets.Count() - 1;
-        }
+        }       
     }
 }

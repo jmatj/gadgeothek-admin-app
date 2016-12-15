@@ -20,12 +20,12 @@ using System.Windows.Shapes;
 namespace ch.hsr.wpf.gadgeothek.ui
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for GadgeothekWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class GadgeothekWindow : Window
     {
 
-        public MainWindow()
+        public GadgeothekWindow()
         {
             InitializeComponent();
         }
