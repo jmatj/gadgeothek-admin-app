@@ -4,18 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ch.hsr.wpf.gadgeothek.ui.tab"
+             xmlns:resx="clr-namespace:ch.hsr.wpf.gadgeothek.ui.Properties"
              mc:Ignorable="d" 
              Style="{StaticResource tabWindow}">
     <StackPanel Orientation="Horizontal">
-        <DataGrid Name="LoanList" ItemsSource="{Binding Loans}" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Kunde" MinWidth="100" Binding="{Binding Customer.Name}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Gadget" MinWidth="100" Binding="{Binding Gadget.Name}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Ausleihdatum" Binding="{Binding PickupDate, StringFormat={}{0:MM.dd.yyyy}}" SortDirection="Descending" IsReadOnly="True" />
-                <DataGridCheckBoxColumn Header="Ist fällig" Binding="{Binding IsOverdue, Mode=OneWay}" IsReadOnly="True"/>
-                <DataGridCheckBoxColumn Header="Retourniert" Binding="{Binding WasReturned, Mode=OneWay}" IsReadOnly="True"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <StackPanel Orientation="Vertical" >
+            <DataGrid Name="LoanList" ItemsSource="{Binding Loans}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Kunde" MinWidth="100" Binding="{Binding Customer.Name}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Gadget" MinWidth="100" Binding="{Binding Gadget.Name}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Ausleihdatum" Binding="{Binding PickupDate, StringFormat={}{0:MM.dd.yyyy}}" SortDirection="Descending" IsReadOnly="True" />
+                    <DataGridCheckBoxColumn Header="Ist fällig" Binding="{Binding IsOverdue, Mode=OneWay}" IsReadOnly="True"/>
+                    <DataGridCheckBoxColumn Header="Retourniert" Binding="{Binding WasReturned, Mode=OneWay}" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button
+                Content="{x:Static resx:Resources.REFRESH_BUTTON}"
+                Command="{Binding RefreshCommand}"
+                IsEnabled="{Binding IsRefreshing, Converter={StaticResource InvertConvert}}"
+                Width="55"
+                Height="30"
+                HorizontalAlignment="Left"
+                Margin="5,10,0,0"
+                />
+        </StackPanel>
         <StackPanel>
             <Grid>
                 <Grid.ColumnDefinitions>
