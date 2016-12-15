@@ -1,5 +1,6 @@
 ﻿using ch.hsr.wpf.gadgeothek.domain;
 using ch.hsr.wpf.gadgeothek.service;
+using ch.hsr.wpf.gadgeothek.ui.viewmodel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,42 +25,12 @@ namespace ch.hsr.wpf.gadgeothek.ui.tab
     /// </summary>
     public partial class LoanTab : UserControl
     {
-        private LibraryAdminService libraryAdminService;
-        public ObservableCollection<Loan> Loans { get; set; }
-        public ObservableCollection<Reservation> Reservations { get; set; }
-
         public LoanTab()
         {
             InitializeComponent();
-            LoadData();
 
-            DataContext = this;
+            DataContext = new LoanVM();
         }
-
-        private void LoadData()
-        {
-            libraryAdminService = new LibraryAdminService(ConfigurationManager.AppSettings["server"]);
-
-            LoadLoans();
-            LoadReservations();
-        }
-
-        private void LoadLoans()
-        {
-            Loans = new ObservableCollection<Loan>();
-            foreach (Loan loan in libraryAdminService.GetAllLoans())
-            {
-                Loans.Add(loan);
-            }
-        }
-
-        public void LoadReservations()
-        {
-            Reservations = new ObservableCollection<Reservation>();
-            foreach (Reservation reservation in libraryAdminService.GetAllReservations())
-            {
-                Reservations.Add(reservation);
-            }
-        }
+        
     }
 }

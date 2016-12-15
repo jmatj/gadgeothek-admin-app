@@ -64,6 +64,7 @@
     <Compile Include="converter\ConditionValueConverter.cs" />
     <Compile Include="converter\EditButtonVisibilityConverter.cs" />
     <Compile Include="converter\InvertConverter.cs" />
+    <Compile Include="viewmodel\LoanVM.cs" />
     <Compile Include="view\tab\GadgetTab.xaml.cs">
       <DependentUpon>GadgetTab.xaml</DependentUpon>
     </Compile>
