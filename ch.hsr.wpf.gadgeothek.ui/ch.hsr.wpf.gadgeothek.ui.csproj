@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="viewmodel\BindableBase.cs" />
     <Compile Include="viewmodel\GadgetVM.cs" />
+    <Compile Include="viewmodel\LoanVM.cs" />
     <Page Include="GadgeothekWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
