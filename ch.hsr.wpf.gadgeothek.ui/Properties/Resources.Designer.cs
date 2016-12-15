@@ -22,7 +22,7 @@ namespace ch.hsr.wpf.gadgeothek.ui.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ch.hsr.wpf.gadgeothek.ui.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ch.hsr.wpf.gadgeothek.ui.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace ch.hsr.wpf.gadgeothek.ui.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,20 +61,29 @@ namespace ch.hsr.wpf.gadgeothek.ui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Soll das Gadget gelöscht werden?.
+        ///   Looks up a localized string similar to Do you want to delete this gadget?.
         /// </summary>
-        internal static string DELETE_CONFIRMATION_TEXT {
+        public static string DELETE_CONFIRMATION_TEXT {
             get {
                 return ResourceManager.GetString("DELETE_CONFIRMATION_TEXT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bestätigung.
+        ///   Looks up a localized string similar to Confirm Deletion.
         /// </summary>
-        internal static string DELETE_CONFIRMATION_TITLE {
+        public static string DELETE_CONFIRMATION_TITLE {
             get {
                 return ResourceManager.GetString("DELETE_CONFIRMATION_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        public static string REFRESH_BUTTON {
+            get {
+                return ResourceManager.GetString("REFRESH_BUTTON", resourceCulture);
             }
         }
     }

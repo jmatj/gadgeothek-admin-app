@@ -118,9 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DELETE_CONFIRMATION_TEXT" xml:space="preserve">
-    <value>Soll das Gadget gelöscht werden?</value>
+    <value>Do you want to delete this gadget?</value>
   </data>
   <data name="DELETE_CONFIRMATION_TITLE" xml:space="preserve">
-    <value>Bestätigung</value>
+    <value>Confirm Deletion</value>
+  </data>
+  <data name="REFRESH_BUTTON" xml:space="preserve">
+    <value>Refresh</value>
   </data>
 </root>

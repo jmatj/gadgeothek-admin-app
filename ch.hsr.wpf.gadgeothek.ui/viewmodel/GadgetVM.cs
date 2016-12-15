@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace ch.hsr.wpf.gadgeothek.ui.viewmodel
 {
@@ -29,11 +30,19 @@ namespace ch.hsr.wpf.gadgeothek.ui.viewmodel
             get { return _selectedGadget; }
             set { SetProperty(ref _selectedGadget, value, nameof(SelectedGadget)); }
         }
+        private bool _isRefreshing;
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set { SetProperty(ref _isRefreshing, value, nameof(IsRefreshing)); }
+        }
 
         public ICommand CreateNewGadgetCommand { get; set; }
         public ICommand SaveCommand { get; set; }
         public ICommand UpdateCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
+        public ICommand RefreshCommand { get; set; }
+
 
         public GadgetVM() {
             LoadData();
@@ -42,6 +51,7 @@ namespace ch.hsr.wpf.gadgeothek.ui.viewmodel
             SaveCommand = new RelayCommand(() => Save(), () => true);
             UpdateCommand = new RelayCommand(() => Update(), () => true);
             DeleteCommand = new RelayCommand(() => Delete(), () => true);
+            RefreshCommand = new RelayCommand(() => Refresh(), () => true);
 
             SelectedGadget = Gadgets.ElementAt(0);
         }
@@ -88,6 +98,19 @@ namespace ch.hsr.wpf.gadgeothek.ui.viewmodel
                 Gadgets.Remove(SelectedGadget);
                 SelectedGadget = Gadgets.ElementAt(0);
             }
+        }
+
+        private void Refresh()
+        {
+            IsRefreshing = true;
+            Task.Run(() =>
+            {
+                LoadGadgets();
+                Dispatcher.CurrentDispatcher.Invoke(() =>
+                {
+                    IsRefreshing = false;
+                });
+            });
         }
     }   
 }

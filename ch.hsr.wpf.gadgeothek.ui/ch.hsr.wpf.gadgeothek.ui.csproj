@@ -63,16 +63,16 @@
     <Compile Include="command\RelayCommand.cs" />
     <Compile Include="converter\ConditionValueConverter.cs" />
     <Compile Include="converter\EditButtonVisibilityConverter.cs" />
-    <Compile Include="tab\GadgetTab.xaml.cs">
+    <Compile Include="converter\InvertConverter.cs" />
+    <Compile Include="view\tab\GadgetTab.xaml.cs">
       <DependentUpon>GadgetTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="tab\LoanTab.xaml.cs">
+    <Compile Include="view\tab\LoanTab.xaml.cs">
       <DependentUpon>LoanTab.xaml</DependentUpon>
     </Compile>
     <Compile Include="viewmodel\BindableBase.cs" />
     <Compile Include="viewmodel\GadgetVM.cs" />
-    <Compile Include="viewmodel\LoanVM.cs" />
-    <Page Include="GadgeothekWindow.xaml">
+    <Page Include="view\GadgeothekWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -80,7 +80,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GadgeothekWindow.xaml.cs">
+    <Compile Include="view\GadgeothekWindow.xaml.cs">
       <DependentUpon>GadgeothekWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -88,11 +88,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="tab\GadgetTab.xaml">
+    <Page Include="view\tab\GadgetTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="tab\LoanTab.xaml">
+    <Page Include="view\tab\LoanTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -112,7 +112,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -132,9 +132,7 @@
       <Name>ch.hsr.wpf.gadgeothek</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="view\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

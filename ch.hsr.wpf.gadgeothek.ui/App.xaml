@@ -9,7 +9,8 @@
             <local:EditButtonVisibilityConverter x:Key="MyEditButtonVisibilityConverter" />
             <BooleanToVisibilityConverter x:Key="MySaveButtonVisibilityConverter" />
             <local:ConditionValueConverter x:Key="MyConditionValueConverter" />
-            
+            <local:InvertConverter x:Key="InvertConvert" />
+
             <ObjectDataProvider x:Key="Conditions"
                 MethodName="GetNames"
                 ObjectType="{x:Type sys:Enum}">
