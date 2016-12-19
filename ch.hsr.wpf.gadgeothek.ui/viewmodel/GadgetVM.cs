@@ -17,7 +17,11 @@ namespace ch.hsr.wpf.gadgeothek.ui.viewmodel
     class GadgetVM : BindableBase
     {
         private LibraryAdminService libraryAdminService;
-        public ObservableCollection<Gadget> Gadgets { get; set; }
+        private ObservableCollection<Gadget> _gadgets;
+        public ObservableCollection<Gadget> Gadgets {
+            get { return _gadgets; }
+            set { SetProperty(ref _gadgets, value, nameof(Gadgets)); }
+        }
         public bool _gadgetNotSaved;
         public bool GadgetNotSaved
         {
@@ -37,6 +41,8 @@ namespace ch.hsr.wpf.gadgeothek.ui.viewmodel
             set { SetProperty(ref _isRefreshing, value, nameof(IsRefreshing)); }
         }
 
+        private Gadget NewGadget { get; set; }
+
         public ICommand CreateNewGadgetCommand { get; set; }
         public ICommand SaveCommand { get; set; }
         public ICommand UpdateCommand { get; set; }
@@ -45,6 +51,7 @@ namespace ch.hsr.wpf.gadgeothek.ui.viewmodel
 
 
         public GadgetVM() {
+            Gadgets = new ObservableCollection<Gadget>();
             LoadData();
 
             CreateNewGadgetCommand = new RelayCommand(() => CreateNewGadget(), () => true);
@@ -59,24 +66,24 @@ namespace ch.hsr.wpf.gadgeothek.ui.viewmodel
         private void LoadData()
         {
             libraryAdminService = new LibraryAdminService(ConfigurationManager.AppSettings["server"]);
-            LoadGadgets();
+            LoadGadgets(Gadgets);
         }
 
-        private void LoadGadgets()
+        private void LoadGadgets(Collection<Gadget> targetCollection)
         {
-            Gadgets = new ObservableCollection<Gadget>();
+            //Gadgets = new ObservableCollection<Gadget>();
             foreach (Gadget gadget in libraryAdminService.GetAllGadgets())
             {
-                Gadgets.Add(gadget);
+                targetCollection.Add(gadget);
             }
         }
 
         private void CreateNewGadget()
         {
             GadgetNotSaved = true;
-            Gadget newGadget = new Gadget("");
-            Gadgets.Add(newGadget);
-            SelectedGadget = newGadget;
+            NewGadget = new Gadget("");
+            Gadgets.Add(NewGadget);
+            SelectedGadget = NewGadget;
         }
 
         private void Save()
@@ -105,9 +112,16 @@ namespace ch.hsr.wpf.gadgeothek.ui.viewmodel
             IsRefreshing = true;
             Task.Run(() =>
             {
-                LoadGadgets();
+                var refreshedGadgets = new ObservableCollection<Gadget>();
+                LoadGadgets(refreshedGadgets);
+
+                if (GadgetNotSaved)
+                {
+                    refreshedGadgets.Add(NewGadget);
+                }
                 Dispatcher.CurrentDispatcher.Invoke(() =>
                 {
+                    Gadgets = refreshedGadgets;
                     IsRefreshing = false;
                 });
             });
