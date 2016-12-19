@@ -9,7 +9,8 @@
              Style="{StaticResource tabWindow}">
     <StackPanel Orientation="Horizontal">
         <StackPanel Orientation="Vertical" >
-            <DataGrid Name="LoanList" ItemsSource="{Binding Loans}" AutoGenerateColumns="False">
+            <DataGrid Name="LoanList" ItemsSource="{Binding Loans}" AutoGenerateColumns="False" IsReadOnly="True"
+                      SelectedItem="{Binding SelectedLoan, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Kunde" MinWidth="100" Binding="{Binding Customer.Name}" IsReadOnly="True" />
                     <DataGridTextColumn Header="Gadget" MinWidth="100" Binding="{Binding Gadget.Name}" IsReadOnly="True" />
