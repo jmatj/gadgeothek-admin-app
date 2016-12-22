@@ -30,7 +30,6 @@ namespace ch.hsr.wpf.gadgeothek.ui.tab
             InitializeComponent();
 
             DataContext = new GadgetVM();
-            GadgetList.SelectedIndex = 0;
         }       
     }
 }

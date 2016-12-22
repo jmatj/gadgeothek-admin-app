@@ -14,7 +14,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Kunde" MinWidth="100" Binding="{Binding Customer.Name}" IsReadOnly="True" />
                     <DataGridTextColumn Header="Gadget" MinWidth="100" Binding="{Binding Gadget.Name}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Ausleihdatum" Binding="{Binding PickupDate, StringFormat={}{0:MM.dd.yyyy}}" SortDirection="Descending" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Ausleihdatum" Binding="{Binding PickupDate, StringFormat={}{0:dd.MM.yyyy}}" SortDirection="Descending" IsReadOnly="True" />
                     <DataGridCheckBoxColumn Header="Ist fällig" Binding="{Binding IsOverdue, Mode=OneWay}" IsReadOnly="True"/>
                     <DataGridCheckBoxColumn Header="Retourniert" Binding="{Binding WasReturned, Mode=OneWay}" IsReadOnly="True"/>
                 </DataGrid.Columns>
@@ -92,7 +92,7 @@
                     Text="{Binding 
                         ElementName=LoanList, 
                         Path=SelectedItem.PickupDate,
-                        StringFormat={}{0:MM.dd.yyyy},
+                        StringFormat={}{0:dd.MM.yyyy},
                         UpdateSourceTrigger=PropertyChanged}" />
 
                 <TextBlock 
@@ -110,7 +110,7 @@
                     Text="{Binding 
                         ElementName=LoanList, 
                         Path=SelectedItem.ReturnDate,
-                        StringFormat={}{0:MM.dd.yyyy},
+                        StringFormat={}{0:dd.MM.yyyy},
                         UpdateSourceTrigger=PropertyChanged}" />
 
                 <TextBlock 
@@ -128,7 +128,7 @@
                     Text="{Binding 
                         ElementName=LoanList, 
                         Path=SelectedItem.OverDueDate,
-                        StringFormat={}{0:MM.dd.yyyy},
+                        StringFormat={}{0:dd.MM.yyyy},
                         UpdateSourceTrigger=PropertyChanged}" />
             </Grid>
         </StackPanel>

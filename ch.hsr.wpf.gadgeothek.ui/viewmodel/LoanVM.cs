@@ -43,6 +43,7 @@ namespace ch.hsr.wpf.gadgeothek.ui.viewmodel
             RefreshCommand = new RelayCommand(() => Refresh(), () => true);
             Loans = new ObservableCollection<Loan>();
             LoadData();
+            SelectedLoan = Loans.ElementAt(0);
         }
 
         private void LoadData()

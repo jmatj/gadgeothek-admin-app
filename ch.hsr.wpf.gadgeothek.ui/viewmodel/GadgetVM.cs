@@ -71,7 +71,6 @@ namespace ch.hsr.wpf.gadgeothek.ui.viewmodel
 
         private void LoadGadgets(Collection<Gadget> targetCollection)
         {
-            //Gadgets = new ObservableCollection<Gadget>();
             foreach (Gadget gadget in libraryAdminService.GetAllGadgets())
             {
                 targetCollection.Add(gadget);
