@@ -8,6 +8,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
 
@@ -49,27 +50,27 @@ namespace ch.hsr.wpf.gadgeothek.ui.viewmodel
         private void LoadData()
         {
             libraryAdminService = new LibraryAdminService(ConfigurationManager.AppSettings["server"]);
-            LoadLoans(Loans);
+            LoadLoans();
         }
 
-        private void LoadLoans(Collection<Loan> targetCollection)
+        private void LoadLoans()
         {
             foreach (Loan loan in libraryAdminService.GetAllLoans())
             {
-                targetCollection.Add(loan);
+                Loans.Add(loan);
             }
         }
         private void Refresh()
         {
-            IsRefreshing = true;
             int selectedIndex = Loans.IndexOf(SelectedLoan);
+            Loans.Clear();
+            IsRefreshing = true;
+            BindingOperations.EnableCollectionSynchronization(_loans, new object());
             Task.Run(() =>
             {
-                var refreshedLoans = new ObservableCollection<Loan>();
-                LoadLoans(refreshedLoans);
                 Dispatcher.CurrentDispatcher.Invoke(() =>
                 {
-                    Loans = refreshedLoans;
+                    LoadLoans();
                     SelectedLoan = Loans.ElementAt(selectedIndex);
                     IsRefreshing = false;
                 });
